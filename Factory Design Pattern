@@ -1,0 +1,38 @@
+class Main {
+    public static void main(String[] args) {
+        // Example of Factory usage
+        ShapeFactory factory = new ShapeFactory();
+        Shape s1 = factory.getShape("circle");
+        Shape s2 = factory.getShape("square");
+    }
+}
+
+// Shape superclass
+class Shape {
+    public void draw(String shape){
+        System.out.println("Drawing " + shape);
+    }
+}
+
+// Circle subclass
+class Circle extends Shape {
+    public Circle(){
+        draw("Circle");
+    }
+}
+
+// Square subclass
+class Square extends Shape {
+    public Square(){
+        draw("Square");
+    }
+}
+
+// Factory class
+class ShapeFactory {
+    public Shape getShape(String shape){
+        if (shape.equalsIgnoreCase("circle")) return new Circle();
+        if (shape.equalsIgnoreCase("square")) return new Square();
+        return null;
+    }
+}
