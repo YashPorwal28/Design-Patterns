@@ -1,0 +1,41 @@
+class Main {
+    public static void main(String[] args) {
+        Pizza pizza = new Pizza.PizzaBuilder("large", true)
+                            .addVeggiest()
+                            .build();
+        System.out.println("Pizza created!");
+    }
+}
+
+class Pizza {
+    private String size;       // Required
+    private Boolean addVeggies; // Optional
+    private Boolean addMeat;    // Required
+    
+    private Pizza(PizzaBuilder builder){
+        this.size = builder.size;
+        this.addVeggies = builder.addVeggies;
+        this.addMeat = builder.addMeat;
+    }
+    
+    // static nested class
+    public static class PizzaBuilder {
+        private String size; 
+        private Boolean addVeggies = false; // default optional
+        private Boolean addMeat;
+        
+        public PizzaBuilder(String size, Boolean addMeat){
+            this.size = size;
+            this.addMeat = addMeat;
+        }
+        
+        public PizzaBuilder addVeggiest(){
+            this.addVeggies = true;
+            return this;
+        }
+        
+        public Pizza build(){
+            return new Pizza(this);
+        }
+    }
+}
